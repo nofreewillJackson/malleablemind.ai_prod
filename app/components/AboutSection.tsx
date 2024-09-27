@@ -51,8 +51,8 @@ const TAB_DATA = [
         id: "education",
         content: (
             <ul className="list-disc pl-5">
-                <li>Fullstack Academy of Code</li>
-                <li>University of California, Santa Cruz</li>
+                <li>youtube lol</li>
+                <li>youtube</li>
             </ul>
         ),
     },
@@ -130,10 +130,10 @@ const AboutSection: React.FC = () => {
                                 <p className="text-base lg:text-lg">
                                     I am a full stack web developer with a passion for creating
                                     interactive and responsive web applications. I have experience
-                                    working with JavaScript, React, Redux, Node.js, Express, PostgreSQL,
-                                    Sequelize, HTML, CSS, and Git. I am a quick learner and I am always
-                                    looking to expand my knowledge and skill set. I am a team player and
-                                    I am excited to work with others to create amazing applications.
+                                    working with Go, JavaScript, React, Redux, Node.js, Express, PostgreSQL,
+                                    Sequelize, HTML, CSS, and Git. I am a dedicated learner and I am always
+                                    looking to expand my knowledge and skill set. I am very personable and first and foremost look forward
+                                    to work with others to solve problems because after all, my passion in CS and software engineering stems from how computing models reality 1:1.
                                 </p>
                                 {/* Tab Buttons */}
                                 <div className="flex flex-row justify-start mt-8 space-x-4">
