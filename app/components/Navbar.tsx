@@ -2,7 +2,7 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import NavLink from "./NavLink";
-import MenuOverlay from "./MenuOverlay";
+import useSectionObserver from "./hooks/useSectionObserver";
 
 const navLinks = [
     { title: "About", path: "#about" },
@@ -10,42 +10,17 @@ const navLinks = [
     { title: "Contact", path: "#contact" },
 ];
 
-const HamburgerIcon = () => (
-    <svg
-        className="h-6 w-6 text-blue-100 hover:text-blue-400 transition ease-in-out"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-    >
-        <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M4 6h16M4 12h16M4 18h16"
-        />
-    </svg>
-);
-
-const CloseIcon = () => (
-    <svg
-        className="h-6 w-6 text-blue-100 hover:text-blue-400 transition ease-in-out"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-    >
-        <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M6 18L18 6M6 6l12 12"
-        />
-    </svg>
-);
-
 const Navbar = () => {
-    const [navbarOpen, setNavbarOpen] = useState(false);
+    const [activeSection, setActiveSection] = useState(""); // Track active section
+
+    useSectionObserver(setActiveSection);
+
+    // Define classes for active and inactive buttons
+    const inactiveClassName =
+        "text-xl text-[#E3FAFC] hover:text-white transition duration-300 px-4 py-2 text-shadow-md hover:text-shadow-lg";
+
+    const activeClassName =
+        "text-xl text-white transition duration-300 px-4 py-2 text-shadow-3d transform translate-y-1";
 
     return (
         <nav className="fixed mx-auto top-0 left-0 right-0 z-10 bg-gradient-to-r from-[#00203F] via-[#003F66] to-[#005C99] shadow-lg">
@@ -53,27 +28,9 @@ const Navbar = () => {
                 <Link
                     href={"/"}
                     className="text-1xl md:text-2xl text-black-400 font-bold tracking-wider font-[VT323] text-faded"
-
                 >
                     Wu, Jackson
                 </Link>
-                <div className="mobile-menu block md:hidden">
-                    {!navbarOpen ? (
-                        <button
-                            onClick={() => setNavbarOpen(true)}
-                            className="flex items-center px-3 py-2 border rounded border-blue-400 text-blue-100 hover:text-white hover:border-white"
-                        >
-                            <HamburgerIcon />
-                        </button>
-                    ) : (
-                        <button
-                            onClick={() => setNavbarOpen(false)}
-                            className="flex items-center px-3 py-2 border rounded border-blue-400 text-blue-100 hover:text-white hover:border-white"
-                        >
-                            <CloseIcon />
-                        </button>
-                    )}
-                </div>
                 <div className="menu hidden md:block md:w-auto" id="navbar">
                     <ul className="flex p-4 md:p-0 md:flex-row md:space-x-8 mt-0">
                         {navLinks.map((link, index) => (
@@ -81,14 +38,15 @@ const Navbar = () => {
                                 <NavLink
                                     href={link.path}
                                     title={link.title}
-                                    className="text-xl text-[#E3FAFC] hover:text-white transition ease-in-out duration-300"
+                                    className={`relative ${
+                                        activeSection === link.path ? activeClassName : inactiveClassName
+                                    }`}
                                 />
                             </li>
                         ))}
                     </ul>
                 </div>
             </div>
-            {navbarOpen ? <MenuOverlay links={navLinks} /> : null}
         </nav>
     );
 };

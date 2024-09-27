@@ -1,6 +1,6 @@
-// components/HeroSection.tsx
-import Image from 'next/image';
-import React from 'react';
+// HeroSection.tsx
+import Image from "next/image";
+import React from "react";
 
 const HeroSection: React.FC = () => {
     return (
