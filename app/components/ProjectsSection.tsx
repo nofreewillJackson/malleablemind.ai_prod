@@ -4,7 +4,18 @@ import ProjectCard from "./ProjectCard";
 import ProjectTag from "./ProjectTag";
 import { motion, useInView } from "framer-motion";
 
-const projectsData = [
+// Define the type for the project data
+interface Project {
+    id: number;
+    title: string;
+    description: string;
+    image: string;
+    tag: string[];
+    gitUrl: string;
+    previewUrl: string;
+}
+
+const projectsData: Project[] = [
     {
         id: 1,
         title: "React Portfolio Website",
@@ -16,7 +27,7 @@ const projectsData = [
     },
     {
         id: 2,
-        title: "Potography Portfolio Website",
+        title: "Photography Portfolio Website",
         description: "Project 2 description",
         image: "/images/projects/2.png",
         tag: ["All", "Web"],
@@ -61,12 +72,12 @@ const projectsData = [
     },
 ];
 
-const ProjectsSection = () => {
-    const [tag, setTag] = useState("All");
+const ProjectsSection: React.FC = () => {
+    const [tag, setTag] = useState<string>("All");
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true });
 
-    const handleTagChange = (newTag) => {
+    const handleTagChange = (newTag: string) => {
         setTag(newTag);
     };
 
@@ -104,7 +115,7 @@ const ProjectsSection = () => {
             <ul ref={ref} className="grid md:grid-cols-3 gap-8 md:gap-12">
                 {filteredProjects.map((project, index) => (
                     <motion.li
-                        key={index}
+                        key={project.id}
                         variants={cardVariants}
                         initial="initial"
                         animate={isInView ? "animate" : "initial"}
