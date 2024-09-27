@@ -30,13 +30,13 @@ const ButtonsGrid: React.FC = () => {
                     >
                         <Image
                             src={`/${buttonName}.svg`}
-                            alt={`${buttonName} `}
+                            alt={` `}
                             fill
                             className="object-contain transition-opacity duration-300 group-hover:opacity-0"
                         />
                         <Image
                             src={`/${buttonName}_hover.svg`}
-                            alt={`${buttonName} `}
+                            alt={` `}
                             fill
                             className="object-contain opacity-0 transition-opacity duration-300 group-hover:opacity-100"
                         />
